@@ -10,10 +10,11 @@
     git clone https://github.com/0368443155/test-intern-fe
     cd explore-gallery
 2.  **Cài đặt dependencies:**
-    npm install
-    npm install swr
-    npm install -D vitest @testing-library/react @testing-library/jest-dom playwright
-    npx playwright install # Cài đặt trình duyệt
+    ```bash
+    npm install  
+    npm install swr  
+    npm install -D vitest @testing-library/react @testing-library/jest-dom playwright  
+    npx playwright install # Cài đặt trình duyệt  
 
 3.  **Khởi động server phát triển:**
     npm run dev
