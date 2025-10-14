@@ -31,6 +31,6 @@
 Dự án sẽ chạy tại: **`http://localhost:3000`**.
 
 ## 3. Deploy:
-Dự án đã được deploy lên Vercel tại: https://test-intern-d9wwexo10-0368443155s-projects.vercel.app/
+Dự án đã được deploy lên Vercel tại: https://test-intern-fe-snowy.vercel.app/
 
 
