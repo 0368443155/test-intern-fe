@@ -8,6 +8,7 @@
     Tìm kiếm theo tên, danh mục  
     Sắp xếp theo thời gian tạo (mới nhất)
     Sắp xếp theo mức độ yêu thích (số likes)
+    Số lượng hiển thị ban đầu quy định là 10, tổng số là 35, khi lướt xuống quá 10 phần tử thì sẽ tự động render thêm cho đến khi hết
 * **Item Detail (`/item/[id]`):** 
     ```bash
     Hiển thị ảnh lớn  
@@ -32,7 +33,8 @@
 2.  **Cài đặt dependencies:**
     ```bash
     npm install  
-    npm install swr  
+    npm install swr
+    npm install lucide-react
     npm install -D vitest @testing-library/react @testing-library/jest-dom playwright  
     npx playwright install # Cài đặt trình duyệt  
 
