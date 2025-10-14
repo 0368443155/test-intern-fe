@@ -2,7 +2,11 @@
 
 ## 1. Chức năng đã thực hiện được
 
-* **Explore Page (`/`):** Lưới card responsive, Tìm kiếm (debounce 300ms)
+* **Explore Page (`/`):** 
+    ```bash
+    Lưới card responsive  
+    Tìm kiếm theo tên, danh mục  
+    Sắp xếp theo 
 * **Tạo ảnh mới (`/create`):**  
     ```bash
     Tạo ảnh mới  

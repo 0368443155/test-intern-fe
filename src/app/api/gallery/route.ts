@@ -1,66 +1,53 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { GalleryItem, PaginatedResponse, NewItemPayload } from '@/lib/types';
+import { GalleryItem, NewItemPayload } from '@/lib/types';
+// Import dữ liệu từ tệp riêng
+import { mockData } from '@/lib/data';
 
-//mock data
-// eslint-disable-next-line prefer-const
-let mockData: GalleryItem[] = Array.from({ length: 30 }, (_, i) => {
-    const categoryOptions = ['Animals', 'Nature', 'Portraits', 'Architecture', 'Abstract', 'Other'];
-    const date = new Date(Date.now() - (i * 3600000 * 24));
-    return {
-        id: String(i + 1),
-        title: `Design Idea ${i + 1}`,
-        imageUrl: `https://picsum.photos/seed/${i + 1}/400/300`,
-        category: categoryOptions[i % categoryOptions.length],
-        likes: 100 + Math.floor(Math.random() * 500),
-        tags: i % 3 === 0 ? ['modern', 'simple'] : ['vibrant', 'complex'],
-        description: `This is a detailed description for design idea ${i + 1}.`,
-        createdAt: date.toISOString(),
-        author: `Author ${i % 5 + 1}`
-    };
-});
-
-
-// --- GET: Fetch, Filter, Sort, Paginate ---
+// --- GET: Lấy danh sách, tìm kiếm, lọc, sắp xếp ---
 export async function GET(request: NextRequest) {
     const { searchParams } = new URL(request.url);
     const page = parseInt(searchParams.get('page') || '1');
-    const limit = parseInt(searchParams.get('limit') || '10');
     const search = searchParams.get('search') || '';
-    const category = searchParams.get('category') || 'All';
-    const sort = searchParams.get('sort') || 'latest';
-    const exclude = searchParams.get('exclude') || '';
+    const category = searchParams.get('category') || '';
+    const sortBy = searchParams.get('sort') || 'latest';
+    const limit = parseInt(searchParams.get('limit') || '10');
+    const excludeId = searchParams.get('exclude');
 
-    let allItems = [...mockData]; // Làm việc trên một bản sao
+    let filteredData = [...mockData];
 
-    // 1. Lọc dữ liệu
-    if (exclude) {
-        allItems = allItems.filter(item => item.id !== exclude);
+    // Lọc theo ID cần loại trừ
+    if (excludeId) {
+        filteredData = filteredData.filter(item => item.id !== excludeId);
     }
+
+    // Lọc theo tìm kiếm
     if (search) {
-        allItems = allItems.filter(item =>
+        filteredData = filteredData.filter(item =>
             item.title.toLowerCase().includes(search.toLowerCase())
         );
     }
-    if (category && category !== 'All') {
-        allItems = allItems.filter(item => item.category === category);
+
+    // Lọc theo danh mục
+    if (category) {
+        filteredData = filteredData.filter(item => item.category === category);
     }
 
-    // 2. Sắp xếp
-    if (sort === 'latest') {
-        allItems.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
-    } else if (sort === 'trending') {
-        allItems.sort((a, b) => b.likes - a.likes);
+    // Sắp xếp
+    if (sortBy === 'trending') {
+        filteredData.sort((a, b) => b.likes - a.likes);
+    } else { // Mặc định là 'latest'
+        filteredData.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
     }
 
-    // 3. Phân trang
+    // Phân trang
     const startIndex = (page - 1) * limit;
-    const endIndex = startIndex + limit;
-    const results = allItems.slice(startIndex, endIndex);
+    const endIndex = page * limit;
+    const results = filteredData.slice(startIndex, endIndex);
 
     return NextResponse.json({
         data: results,
-        nextPage: endIndex < allItems.length ? page + 1 : null,
-    } as PaginatedResponse<GalleryItem>);
+        nextPage: endIndex < filteredData.length ? page + 1 : null,
+    });
 }
 
 // --- POST: Tạo item mới ---
@@ -77,12 +64,10 @@ export async function POST(request: NextRequest) {
         likes: 0,
         createdAt: new Date().toISOString(),
     };
-    
-    // Thêm vào đầu mảng dữ liệu tạm
-    mockData.unshift(newItem); 
+
+    // Thêm item mới vào mảng dữ liệu đã import
+    mockData.unshift(newItem);
 
     return NextResponse.json(newItem, { status: 201 });
 }
 
-// Export mảng dữ liệu để các route khác có thể import và sử dụng chung
-export { mockData };

@@ -1,10 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server';
 // Import mảng mockData được chia sẻ từ API route chính
-import { mockData } from '../route'; 
+import { mockData } from '@/lib/data';
 
 // --- GET: Lấy một item theo ID ---
-export async function GET(request: NextRequest, { params }: { params: { id: string } }) {
-    const id = params.id; // Thay đổi ở đây
+export async function GET(
+    request: NextRequest,
+    { params }: { params: Promise<{ id: string }> }
+) {
+    const id = (await params).id;
     const item = mockData.find(i => i.id === id);
 
     if (!item) {
@@ -15,8 +18,11 @@ export async function GET(request: NextRequest, { params }: { params: { id: stri
 }
 
 // --- PATCH: Cập nhật lượt like ---
-export async function PATCH(request: NextRequest, { params }: { params: { id: string } }) {
-    const id = params.id; // Thay đổi ở đây
+export async function PATCH(
+    request: NextRequest,
+    { params }: { params: Promise<{ id: string }> }
+) {
+    const id = (await params).id;
     const itemIndex = mockData.findIndex(i => i.id === id);
 
     if (itemIndex === -1) {
