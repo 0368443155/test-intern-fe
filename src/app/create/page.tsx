@@ -1,12 +1,13 @@
-
 'use client';
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useSWRConfig } from 'swr';
+import Link from 'next/link';
 import { NewItemPayload, GalleryItem, PaginatedResponse } from '@/lib/types'; 
 import React from 'react';
 import Image from 'next/image'; // Import Next.js Image component
+import { ArrowLeft } from 'lucide-react';
 
 const CATEGORIES = ['Nature', 'Abstract', 'Portraits', 'Architecture', 'Animals', 'Other'];
 
@@ -150,6 +151,10 @@ export default function CreateItemPage() {
 
   return (
     <div className="container mx-auto p-4 md:p-8 max-w-xl">
+            <Link href="/" className="inline-flex items-center gap-2 text-indigo-600 hover:text-indigo-800 transition-colors mb-8 font-semibold">
+                <ArrowLeft size={18} />
+                Back
+            </Link>
       <h1 className="text-3xl font-bold mb-8 text-gray-800">Create New Item</h1>
       
       <form onSubmit={handleSubmit} className="space-y-4 bg-white p-6 rounded-xl shadow-lg">

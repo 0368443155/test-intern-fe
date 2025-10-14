@@ -52,7 +52,7 @@ const ItemDetailPage = () => {
         <div className="container mx-auto p-4 md:p-8 max-w-6xl">
             <Link href="/" className="inline-flex items-center gap-2 text-indigo-600 hover:text-indigo-800 transition-colors mb-8 font-semibold">
                 <ArrowLeft size={18} />
-                Trở lại tư viện
+                Back
             </Link>
 
             <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-12">

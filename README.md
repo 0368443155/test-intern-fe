@@ -6,7 +6,13 @@
     ```bash
     Lưới card responsive  
     Tìm kiếm theo tên, danh mục  
-    Sắp xếp theo 
+    Sắp xếp theo thời gian tạo (mới nhất)
+    Sắp xếp theo mức độ yêu thích (số likes)
+* **Item Detail (`/item/[id]`):** 
+    ```bash
+    Hiển thị ảnh lớn  
+    Hiển tên, lượt thích, description, thời gian tạo, tags
+    Hiển thị những ảnh cùng danh mục  
 * **Tạo ảnh mới (`/create`):**  
     ```bash
     Tạo ảnh mới  
@@ -15,7 +21,8 @@
     Chọn danh mục cho ảnh
     Gắn tags
     Nhập description
-    Sau khi bấm tạo ảnh thì ảnh mới sẽ được đưa lên đầu danh sách ảnh
+    Sau khi tạo ảnh thì ảnh mới sẽ được đưa lên đầu danh sách ảnh
+    Điều hướng sang trang Item Detail
 
 ## 2. Hướng dẫn Cài đặt & Chạy
 
