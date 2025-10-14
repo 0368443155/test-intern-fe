@@ -3,6 +3,15 @@
 ## 1. Chức năng đã thực hiện được
 
 * **Explore Page (`/`):** Lưới card responsive, Tìm kiếm (debounce 300ms)
+* **Tạo ảnh mới (`/create`):**  
+    ```bash
+    Tạo ảnh mới  
+    Chọn ảnh từ máy để tải lên HOẶC dán link ảnh từ website
+    Điền tiêu đề ảnh  
+    Chọn danh mục cho ảnh
+    Gắn tags
+    Nhập description
+    Sau khi bấm tạo ảnh thì ảnh mới sẽ được đưa lên đầu danh sách ảnh
 
 ## 2. Hướng dẫn Cài đặt & Chạy
 
@@ -23,3 +32,5 @@ Dự án sẽ chạy tại: **`http://localhost:3000`**.
 
 ## 3. Deploy:
 Dự án đã được deploy lên Vercel tại: https://test-intern-d9wwexo10-0368443155s-projects.vercel.app/
+
+

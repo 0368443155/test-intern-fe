@@ -4,6 +4,7 @@ import { useEffect, useRef } from 'react';
 import useSWRInfinite from 'swr/infinite';
 import { ItemCard, ItemCardSkeleton } from '@/components/ItemCard';
 import { GalleryItem, PaginatedResponse } from '@/lib/types';
+import Link from 'next/link'; // Import Link
 
 // Hàm lấy key cho SWR Infinite
 const getKey = (pageIndex: number, previousPageData: PaginatedResponse<GalleryItem> | null) => {
@@ -50,7 +51,17 @@ export default function ExplorePage() {
 
   return (
     <div className="container mx-auto p-4 md:p-8">
-      <h1 className="text-4xl font-extrabold text-gray-900 mb-8">Explore Gallery</h1>
+      
+      {/* Header and Create Button */}
+      <div className="flex justify-between items-center mb-8">
+        <h1 className="text-4xl font-extrabold text-gray-900">Explore Gallery</h1>
+        <Link 
+          href="/create"
+          className="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition-colors"
+        >
+          + Create New Item
+        </Link>
+      </div>
       
       {/* Lưới Card Responsive: 1 cột (mobile), 2 cột (sm), 3 cột (lg) */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
