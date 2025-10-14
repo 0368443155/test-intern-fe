@@ -11,8 +11,8 @@ export interface GalleryItem {
 
 export interface PaginatedResponse<T> {
   data: T[];
-  nextPage: number | null; // Null nếu không còn trang
+  nextPage: number | null; // Null if it's the last page
 }
 
-//data cho item mới
+// Data payload for creating a new item
 export type NewItemPayload = Omit<GalleryItem, 'id' | 'likes' | 'createdAt'>;
